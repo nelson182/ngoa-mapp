@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/accueil.css">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/styleacc.css">
+   <link rel="stylesheet" href="css/leaflet.css">
+   <style>
+    body { margin: 0; padding: 0; }
+    #map { height: 500px; width: 100%; }
+    #error-modal { 
+        display: none; 
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        background-color: red;
+        color: white;
+        padding: 20px;
+        z-index: 1000;
+    }
+</style>
+   <title>acceuil</title>
+</head>
+<body>
+   <nav class="navbar navbar-dark bg-dark " aria-label="First navbar example" >
+       <div class="container-fluid first">
+           <div id="profile" class="navbar-brand" >
+           <img src="assets/account.png" alt="mdo" style="border: 2px solid white;" width="40" height="40" class="rounded-circle">
+           NgoaMapp </div>
+         <button class="navbar-toggler collapsed noexpand" id="search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+<img src="assets/search.jfif" alt="Search">          </button>
+   
+         <div class="navbar-collapse collapse " id="navbarsExample01" >
+           <ul class="navbar-nav  mb-2 ">
+             <li class="nav-item dropdown " style="margin-bottom: 8px;">
+               <a class="nav-link dropdown-toggle"  href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">YAOUNDE 1 UNIVERSITY</a>
+               <ul class="dropdown-menu ref" aria-labelledby="dropdown01">
+                   <li><a class="dropdown-item" href="#">AMPHITHEATRES</a></li>
+                   <li><a class="dropdown-item" href="#">BLOCS ADMINISTRATIFS</a></li>
+                   <li><a class="dropdown-item" href="#">DEPARTEMENTS</a></li>
+                   <li><a class="dropdown-item" href="#">RESTAURANTS</a></li>
+                 <li><a class="dropdown-item" href="#">AUTRES</a></li>
+               </ul>
+             </li>
+             <li class="nav-item dropdown " style="margin-top: 8px;">
+               <div class="input-group  ">
+                   <input type="search" class="form-control rounded searchbar" placeholder="look for a place in ngoa..." aria-label="Search" aria-describedby="search-addon">
+                   <button type="button" class="btn btn-primary searchbutton " data-mdb-ripple-init="">search</button>
+                 </div><br><br>
+            <p style="color: aliceblue;"> <i>most visited places : </i> </p>
+                 <div class="container-fluid element text-light">
+                         <div class="fw-bold " style="float: left; ">amphi 502  &nbsp;&nbsp;&nbsp;</div><span class="badge bg-success" style="margin-right: 5px;">Ouvert</span>
+                       <br>
+                         <span class="time-remaining">Fermeture dans: 2h</span>
+                       
+                       </div>
+                       
+                          
+                           
+                 
+             </li>
+           </ul>
+           
+   
+
+         </div>
+       </div>
+     </nav>
+
+
+     <div class="sidebar" id="sidebar">
+       <div class="account">
+          <strong>compte</strong>
+       </div>
+       <div class="share">
+         <strong>partager sa position</strong>
+      </div>
+      <div class="about">
+       <strong>à propos</strong>
+    </div>
+    <div class="evaluate">
+     <strong>évaluer l'application</strong>
+  </div>
+   </div>
+
+     <div class="fonctions">
+       <div class=" fonction fonction1" id="fonction1"></div>
+       <div class=" fonction fonction2" id="fonction2"></div>
+     </div>
+
+   <script src="js/bootstrap.bundle.min.js"></script>
+   <script src="js/leaflet.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/osmtogeojson@3.0.0-beta.4/osmtogeojson.js"></script>
+   
+
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+   <script src="https://unpkg.com/leaflet-osm@0.1.0/leaflet-osm.js"></script>
+   
+</head>
+<body>
+<div id="map"></div>
+<div id="error-modal">Vous n'êtes pas dans la zone du campus</div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+<script src="accueil.js"></script>
+</body>
+</html>
