@@ -69,8 +69,8 @@ sidebar.addEventListener("click",function(){
 
 // Campus boundaries (to be updated with actual coordinates from map.osm)
 const campusBounds = [
-  [3.8700, 11.5000],  // Southwest corner
-  [3.8800, 11.5200]   // Northeast corner
+  [3.84259, 11.48818],  // Southwest corner
+  [3.86550, 11.51260]   // Northeast corner
 ];
 
 // Initialize map
@@ -82,7 +82,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Restrict map view to campus bounds
 map.setMaxBounds(campusBounds);
-map.options.minZoom = 16;
+map.options.minZoom = 15;
 map.options.maxZoom = 19;
 
 // Current user location
