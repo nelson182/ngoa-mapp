@@ -10,3 +10,4 @@ werkzeug
 flask_sqlalchemy
 scikit-learn
 numpy
+lxml
