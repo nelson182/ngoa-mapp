@@ -1,0 +1,192 @@
+/* Style général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #8a2be2, #9b4dff);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Conteneur principal */
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Bouton retour */
+.btn.back-home {
+    position: fixed; /* Utilisation de 'fixed' pour garantir que le bouton reste visible même lors du défilement */
+    top: 20px;
+    left: 20px;
+    background-color: #ffcc00;
+    color: #8a2be2;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    z-index: 1000; /* Assurez-vous que le bouton reste au-dessus des autres éléments */
+}
+
+.btn.back-home:hover {
+    background-color: #9b4dff;
+    color: white;
+}
+
+/* Style du système d'étoiles */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.star {
+    cursor: pointer;
+    color: #bbb;
+    transition: color 0.3s ease;
+}
+
+.star:hover, .star.selected {
+    color: #ffcc00;
+}
+
+#rating-display {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Section des commentaires */
+.comment-section {
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.comment-section h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.comment-box {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.submit-btn {
+    background-color: #ffcc00;
+    color: #8a2be2;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #9b4dff;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+        width: 90%;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .star-rating {
+        font-size: 2rem;
+    }
+
+    .comment-box {
+        height: 80px;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    .btn.back-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .star-rating {
+        font-size: 1.8rem;
+    }
+
+    .comment-box {
+        height: 70px;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    .btn.back-home {
+        top: 10px;
+        left: 10px;
+        padding: 7px 14px;
+    }
+}
+

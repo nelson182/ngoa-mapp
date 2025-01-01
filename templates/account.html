@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <a href="{{ url_for('accueil') }}" class="home-link">← Retour à l'accueil</a>
+        </div>
+    </header>
+    <main>
+        <div class="account-container">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo de l'application">
+                </div>
+                <h1 class="user-name">{{ nom }}</h1>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <label>Email:</label>
+                        <p class="user-email">{{ email }}</p>
+                    </div>
+                    <div class="info-card">
+                        <label>Âge:</label>
+                        <p class="user-age">{{ age }} ans</p>
+                    </div>
+                </div>
+                <button id="edit-info-btn" class="update-btn">Mettre à jour</button>
+            </div>
+
+            <div class="welcome-section">
+                <h2>Hello, {{ nom }}!</h2>
+                <p>Voici votre espace personnel. Vous pouvez modifier vos informations ci-contre.</p>
+                <form id="edit-form" action="{{ url_for('account') }}" method="POST" style="display: none;">
+                    <div class="form-group">
+                        <label for="name">Nom:</label>
+                        <input type="text" name="name" id="name" value="{{ nom }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" value="{{ email }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Âge:</label>
+                        <input type="number" name="age" id="age" value="{{ age }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe:</label>
+                        <input type="password" name="password" id="password" placeholder="Nouveau mot de passe">
+                    </div>
+                    <button type="submit" class="save-btn">Enregistrer les modifications</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <a href="{{ url_for('logout') }}" class="logout-link">Déconnexion</a>
+    </footer>
+
+    <script>
+        const editBtn = document.getElementById('edit-info-btn');
+        const editForm = document.getElementById('edit-form');
+
+        editBtn.addEventListener('click', () => {
+            editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>

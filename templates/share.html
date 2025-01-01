@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partager ma position - NgoaMaps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/share.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Bouton retour avec accessibilité -->
+        <a href="{{ url_for('accueil') }}" class="btn btn-back" aria-label="Retour à l'accueil">Retour à l'accueil</a>
+        
+        <!-- Logo ajouté en haut du cadre -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo NgoaMaps" class="logo">
+
+        <h1>Partager ma position</h1>
+        <p>Copiez le lien suivant pour partager votre position :</p>
+
+        {% if share_link %}
+            <div class="share-container">
+                <!-- Zone d'affichage du lien avec un attribut aria -->
+                <input type="text" value="{{ share_link }}" readonly class="share-link" aria-label="Lien de partage de position">
+                <!-- Bouton de copie avec un message pour les lecteurs d'écran -->
+                <button class="copy-btn" onclick="copyToClipboard('{{ share_link }}')" aria-label="Copier le lien">Copier</button>
+            </div>
+        {% else %}
+            <p class="error-message">Position non disponible. Assurez-vous que votre position est activée et réessayez.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // Fonction pour copier le lien dans le presse-papiers
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Lien copié dans le presse-papiers !');
+            }, function(err) {
+                alert('Erreur lors de la copie du lien : ', err);
+            });
+        }
+    </script>
+</body>
+</html>
+

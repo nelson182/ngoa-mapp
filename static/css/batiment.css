@@ -1,0 +1,127 @@
+/* Style global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #8a2be2; /* Violet */
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #6a1b9a; /* Violet foncé */
+    padding: 20px;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+.batiment-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.batiment-item {
+    background-color: #9b4dca; /* Violet clair */
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.batiment-item:hover {
+    transform: scale(1.05);
+}
+
+.batiment-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.batiment-item p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.batiment-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Style du footer */
+footer {
+    background-color: #6a1b9a;
+    padding: 15px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer p {
+    color: white;
+    font-size: 14px;
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .batiment-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* Réduit l'écart entre les éléments */
+    }
+
+    .batiment-item {
+        width: 80%; /* Réduit la largeur des éléments pour les petits écrans */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    header nav ul li {
+        display: block; /* Les éléments de navigation sont empilés verticalement */
+        margin: 10px 0;
+    }
+
+    .batiment-item {
+        width: 90%; /* Élargit les éléments pour qu'ils occupent plus de place sur les très petits écrans */
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
+

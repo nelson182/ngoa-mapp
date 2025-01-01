@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Évaluation de NgoaMapp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/evaluate.css') }}">
+</head>
+<body>
+    <!-- Conteneur principal -->
+    <div class="container">
+        <a href="{{ url_for('accueil') }}" class="btn back-home">Retour à l'accueil</a>
+        <header>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo de NgoaMaps" class="logo">
+            <h1>Évaluez NgoaMapp</h1>
+        </header>
+
+        <div class="evaluation-container">
+            <p class="instruction">Cliquez sur les étoiles pour évaluer l'application :</p>
+            
+            <!-- Système d'étoiles -->
+            <div class="star-rating" id="star-rating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <p id="rating-display">Évaluation: 0 étoiles</p>
+
+            <!-- Section des commentaires -->
+            <div class="comment-section">
+                <h2>Laissez un commentaire</h2>
+                <textarea class="comment-box" placeholder="Entrez votre commentaire ici..." id="comment-box"></textarea>
+            </div>
+   
+            <!-- Soumettre l'évaluation -->
+            <form action="{{ url_for('evaluer') }}" method="POST">
+                <input type="hidden" name="rating" id="rating-input" value="0">
+                <input type="hidden" name="comment" id="comment-input" value="">
+                <button type="submit" class="submit-btn">Envoyer votre évaluation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour gérer la sélection des étoiles
+        let rating = 0;
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                rating = this.getAttribute('data-value');
+                
+                // Mise à jour des étoiles sélectionnées
+                document.querySelectorAll('.star').forEach(star => {
+                    if (star.getAttribute('data-value') <= rating) {
+                        star.classList.add('selected');
+                    } else {
+                        star.classList.remove('selected');
+                    }
+                });
+
+                // Afficher l'évaluation sélectionnée
+                document.getElementById('rating-display').textContent = `Évaluation: ${rating} étoiles`;
+
+                // Mettre à jour l'input caché pour l'évaluation
+                document.getElementById('rating-input').value = rating;
+            });
+        });
+
+        // Mettre à jour le commentaire dans l'input caché
+        document.getElementById('comment-box').addEventListener('input', function() {
+            document.getElementById('comment-input').value = this.value;
+        });
+    </script>
+</body>
+</html>
+

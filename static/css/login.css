@@ -1,0 +1,183 @@
+/* Global Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('../images/connexion.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+/* Background Overlay */
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Login Container */
+.login-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Logo Styling */
+.logo img {
+    max-width: 120px; /* Adjust as needed */
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+/* Header Styling */
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Label Styling */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Input Field Styling */
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 2px solid #00ff00;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Placeholder Styling */
+input::placeholder {
+    color: #808080;
+}
+
+/* Password Container for Show/Hide Password Feature */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Toggle Password Visibility Button */
+.toggle-password-btn {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.toggle-password-btn i {
+    font-size: 1.5em;
+    color: #808080;
+}
+
+/* Button Hover Effect */
+.toggle-password-btn:hover i {
+    color: #00ff00;
+}
+
+/* Options Styling (Forgot Password and Remember Me) */
+.options {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Create space between Remember me and Forgot password */
+    font-size: 14px;
+    margin-bottom: 20px; /* Add spacing below Remember me section */
+}
+
+.options div {
+    display: flex;
+    align-items: center; /* Align checkbox and label horizontally */
+}
+
+.options input[type="checkbox"] {
+    margin-right: 5px; /* Space between checkbox and label */
+}
+
+.options a {
+    margin-left: auto; /* Push Forgot password to the far right */
+}
+
+/* Button Styling */
+button {
+    background-color: #00ff00;
+    color: black;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px; /* Adds space above the button */
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #009900;
+}
+
+/* Footer Text Styling */
+p {
+    margin-top: 10px;
+}
+
+a {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    input[type="email"], input[type="password"] {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}
+

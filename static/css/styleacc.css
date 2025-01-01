@@ -1,0 +1,214 @@
+body{
+    margin: 0;
+    
+    
+}
+
+#map{
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.fonctions{
+    z-index: 10000000000000000000000000;
+    width: max-content;
+    position: fixed;
+    right: 5%;
+    bottom: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+.fonction{
+    width: 60px;
+    height: 60px;
+    color:  #0d6efd;
+    border: 4px solid  black;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 4px 10px 14px rgb(82, 80, 80);
+    
+}
+.fonction:hover{
+    cursor: pointer;
+    scale: 1.01;
+}
+.fonction1{
+    background-image: url("../images/mypos.png");
+     background-size: 80%;
+
+ background-position: center;
+ background-repeat: no-repeat;
+
+}
+.fonction2{
+    background-image: url("../images/itineraire.png");
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Petits écrans (téléphones) */
+@media (max-width: 480px) {
+    .fonction {
+        width: 50px;
+        height: 50px;     /* Réduire l'espace intérieur */
+    }
+}
+
+
+
+/* Style pour le conteneur d'affichage des résultats (flou en arrière-plan) */
+#resultats-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fond semi-transparent pour flou */
+    display: none; /* Masqué par défaut */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Flou de l'arrière-plan */
+}
+
+/* Style de la div contenant les résultats */
+#resultats {
+    background-color: white;
+    border-radius: 12px;  /* Bords arrondis */
+    padding: 20px;
+    max-height: 80%;
+    width: 60%;
+    overflow-y: auto;  /* Permet le défilement vertical */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Ombre autour de la boîte */
+    display: flex;
+    flex-direction: column;  /* Pour empiler les résultats verticalement */
+    align-items: center;  /* Centrer les résultats */
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 999999999999999999999999999999999;
+}
+
+/* Style pour chaque carte de résultat */
+.result-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    width: 100%;  /* Utilise toute la largeur disponible */
+    max-width: 500px; /* Limite la largeur max des cartes */
+    text-align: left; /* Alignement à gauche du texte dans la carte */
+}
+
+/* Effet de survol sur la carte de résultat */
+.result-card:hover {
+    background-color: #e8e8e8;
+}
+
+/* Style pour le message "Aucun résultat" */
+.no-results-message {
+    text-align: center;
+    color: #f44336; /* Rouge pour "Aucun résultat" */
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Style pour les titres dans chaque carte de résultat */
+.result-card h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style pour les descriptions dans chaque carte de résultat */
+.result-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Style pour l'image dans la carte de résultat */
+.result-card img {
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+/* Conteneur des résultats avec flou d'arrière-plan */
+#resultats-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fond semi-transparent */
+    display: none;  /* Masqué par défaut */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* Assurez-vous qu'il soit au-dessus de tout autre élément */
+    backdrop-filter: blur(10px);  /* Flou de l'arrière-plan */
+}
+
+/* Style du conteneur des résultats */
+#resultats {
+    background-color: white;
+    border-radius: 12px;  /* Bords arrondis */
+    padding: 20px;
+    width: 50%;
+    max-height: 80%;  /* Limiter la hauteur pour permettre le défilement */
+    overflow-y: auto;  /* Scroll vertical si le contenu est trop long */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);  /* Ombre pour l'effet 3D */
+    display: flex;
+    flex-direction: column;  /* Empiler les résultats verticalement */
+    align-items: center;  /* Centrer les éléments */
+    box-sizing: border-box;
+    text-align: center;
+    max-width: 800px;  /* Largeur maximale de la boîte */
+}
+
+/* Fermeture de la div quand l'utilisateur clique en dehors */
+#resultats-container .result-card {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    width: 90%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Effet de survol des résultats */
+#resultats-container .result-card:hover {
+    background-color: #e8e8e8;
+}
+
+/* Message d'aucun résultat */
+.no-results-message {
+    font-size: 18px;
+    color: #ff3333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/* Personnaliser l'étiquette bleue */
+.custom-marker {
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16px;
+}

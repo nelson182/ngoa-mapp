@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/accueil.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/styleacc.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+   <style>
+    body { margin: 0; padding: 0; }
+    #map { height: 500px; width: 100%; }
+    #error-modal { 
+        display: none; 
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        background-color: red;
+        color: white;
+        padding: 20px;
+        z-index: 1000;
+    }
+</style>
+   <title>accueil</title>
+</head>
+<body>
+   <nav class="navbar navbar-dark bg-dark " aria-label="First navbar example" >
+       <div class="container-fluid first">
+         <div id="profile" class="navbar-brand" onclick="toggleSidebar()">
+         <img src="{{ url_for('static', filename='images/un.png') }}" alt="mdo" style="border: 2px solid white;" width="40" height="40" class="rounded-circle">
+    NgoaMapp
+         </div>
+         <button class="navbar-toggler collapsed noexpand" id="search" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+<img src="{{ url_for('static', filename='images/search.jfif') }}" alt="Search">          </button>
+   
+         <div class="navbar-collapse collapse " id="navbarsExample01" >
+           <ul class="navbar-nav  mb-2 ">
+           <li class="nav-item dropdown " style="margin-bottom: 8px;">
+               <a class="nav-link dropdown-toggle"  href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">YAOUNDE 1 UNIVERSITY</a>
+               <ul class="dropdown-menu ref" aria-labelledby="dropdown01">
+                   <li><a class="dropdown-item" href="#">AMPHITHEATRES</a></li>
+                   <li><a class="dropdown-item" href="#">BLOCS ADMINISTRATIFS</a></li>
+                   <li><a class="dropdown-item" href="#">DEPARTEMENTS</a></li>
+                   <li><a class="dropdown-item" href="#">RESTAURANTS</a></li>
+                 <li><a class="dropdown-item" href="#">AUTRES</a></li>
+               </ul>
+             </li>
+           
+             <li class="nav-item dropdown " style="margin-top: 8px;">
+               <div class="input-group  ">
+                   <input type="search" class="form-control rounded searchbar" id="searchbar" placeholder="look for a place in ngoa..." aria-label="Search" aria-describedby="search-addon">
+                   <button type="button" class="btn btn-primary searchbutton " id="searchbutton" data-mdb-ripple-init="">search</button>
+                 </div><br><br>
+            <p style="color: aliceblue;"> <i>some visited places : </i> </p>
+                
+                       
+                          
+                           
+                 
+             </li>
+           </ul>
+           
+   
+
+         </div>
+       </div>
+     </nav>
+
+
+<!-- Overlay qui recouvre une partie de la page -->
+<div id="overlay" class="overlay"></div>
+
+<!-- Menu déroulant -->
+<!-- Menu déroulant -->
+<div id="dropdownMenu" class="dropdown-menu">
+    <!-- Logo en haut du menu -->
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/un.png') }}" alt="Logo" class="logo">
+    </div>
+
+    <!-- Liste des éléments du menu avec icônes -->
+    <a href="{{ url_for('account') }}" class="dropdown-item account">
+        <i class="fas fa-user"></i> <!-- Icône pour "Compte" -->
+        <span>Account</span>
+    </a>
+
+    <a href="{{ url_for('share') }}" class="dropdown-item share">
+        <i class="fas fa-share-alt"></i> <!-- Icône pour "Partager sa position" -->
+        <span>Share position</span>
+    </a>
+
+    <a href="{{ url_for('about') }}" class="dropdown-item about">
+        <i class="fas fa-info-circle"></i> <!-- Icône pour "À propos" -->
+        <span>About us</span>
+    </a>
+
+    <a href="{{ url_for('evaluer') }}" class="dropdown-item evaluate">
+        <i class="fas fa-star"></i> <!-- Icône pour "Évaluer l'application" -->
+        <span>Evaluate</span>
+    </a>
+
+</div>
+
+   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+   <script src="https://cdn.jsdelivr.net/npm/osmtogeojson@3.0.0-beta.4/osmtogeojson.js"></script>
+  
+   
+
+   <div id="resultats-container"> <div id="resultats"></div> </div>
+<div id="map"  style="margin-bottom: 0%; height: 560px;">
+<div class="fonctions">
+       <div class=" fonction fonction1" id="fonction1"></div>
+       <div class=" fonction fonction2" id="fonction2"></div>
+</div>
+<!-- Conteneur pour les textes alignés horizontalement -->
+<div class="horizontal-texts">
+    <div class="text-overlay">
+        <a href="#" onclick="rechercherLieu('Restaurant')">
+            <i class="fas fa-utensils"></i>
+            <span>Restaurants</span>
+        </a>
+    </div>
+    <div class="text-overlay">
+        <a href="#" onclick="rechercherLieu('amphi')">
+            <i class="fas fa-university"></i>
+            <span>Amphithéâtres</span>
+        </a>
+    </div>
+    <!-- <div class="text-overlay">
+        <a href="#" onclick="rechercherLieu('departement')">
+            <i class="fas fa-building"></i>
+            <span>Départements</span>
+        </a>
+    </div> -->
+    <!-- <div class="text-overlay">
+        <a href="#" onclick="rechercherLieu('decanat')">
+            <i class="fas fa-user-tie"></i>
+            <span>Décanat</span>
+        </a>
+    </div> -->
+    
+    <div class="text-overlay">
+        <a href="#" onclick="rechercherLieu('Bibliothèque')">
+            <i class="fas fa-book"></i>
+            <span>Bibliothèque</span>
+        </a>
+    </div>
+</div>
+
+
+
+</div>
+<div id="error-modal">Vous n'êtes pas dans la zone du campus</div>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+<script src="{{ url_for('static', filename='js/accueil.js') }}"></script>
+</body>
+</html>

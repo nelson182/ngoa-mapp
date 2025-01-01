@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de NgoaMaps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none'; // Cacher toutes les sections
+            });
+            document.getElementById(sectionId).style.display = 'block'; // Afficher la section sélectionnée
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo de NgoaMaps" class="logo">
+            <nav class="navbar">
+                <a href="javascript:void(0);" class="nav-item" onclick="showSection('about')">À propos</a>
+                <a href="javascript:void(0);" class="nav-item" onclick="showSection('contact')">Contactez-nous</a>
+                <a href="javascript:void(0);" class="nav-item" onclick="showSection('help')">Aide</a>
+                <a href="{{ url_for('accueil') }}" class="btn">Retour à l'accueil</a>
+            </nav>
+        </header>
+
+        <section id="about" class="section">
+            <h2>Qu'est ce que NgoaMapp ? </h2>
+            <p>
+                NgoaMapp est une application web mobile conçue pour améliorer l'expérience de navigation des étudiants, enseignants et visiteurs 
+                sur le campus de l'Université de Yaoundé 1. Grâce à son interface intuitive et ses fonctionnalités avancées, elle offre une 
+                solution pratique pour se déplacer efficacement.
+            </p>
+            <p>
+                L'application permet aux utilisateurs de rechercher des salles et des bâtiments par nom, de visualiser leur position sur une carte 
+                interactive et d'obtenir des itinéraires optimisés entre différents points du campus. De plus, des informations complémentaires sur 
+                les salles et les bâtiments, telles que les horaires d'ouverture, sont également fournies.
+            </p>
+            <p>
+                Ce projet, réalisé dans le cadre de notre formation en informatique de niveau 3, vise à répondre aux besoins de navigation 
+                sur un campus vaste et complexe, en fournissant une solution innovante et efficace.
+            </p>
+        </section>
+
+        <section id="contact" class="section" style="display: none;">
+            <h2>Contactez-nous</h2>
+            <p>Nous sommes là pour vous aider. Vous pouvez nous contacter via les moyens suivants :</p>
+            <div class="contact-container">
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp icon-large"></i>
+                    <strong>WhatsApp :</strong>
+                    <p>694705317<br>651500396<br>692132801</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-telegram-plane icon-large"></i>
+                    <strong>Telegram :</strong>
+                    <p>658824382<br>691969842</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone icon-large"></i>
+                    <strong>Téléphone :</strong>
+                    <p>694705317<br>Autres numéros disponibles à la demande.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="help" class="section" style="display: none;">
+            <h2>Aide</h2>
+            <p>Voici comment utiliser l'application :</p>
+            <ul>
+                <li><strong>Connexion :</strong> Connectez-vous avec vos identifiants pour accéder à toutes les fonctionnalités de l'application.</li>
+                <li><strong>Recherche :</strong> Utilisez la barre de recherche pour trouver des lieux spécifiques sur le campus.</li>
+                <li><strong>Itinéraire :</strong> Suivez les indications fournies pour atteindre votre destination en un minimum de temps.</li>
+                <li><strong>Carte interactive :</strong> Visualisez votre position actuelle et les bâtiments environnants sur une carte détaillée.</li>
+                <li><strong>Informations sur les bâtiments :</strong> Obtenez des détails comme les horaires d'ouverture et les services disponibles dans chaque bâtiment.</li>
+            </ul>
+            <i class="fas fa-question-circle icon"></i>
+        </section>
+
+        <footer class="footer">
+            <p></p>
+        </footer>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+</html>

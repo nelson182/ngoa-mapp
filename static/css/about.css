@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #6a1b9a; /* Purple background */
+    color: #ffffff; /* White text */
+}
+
+.container {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+    max-width: 90%;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a148c; /* Darker purple for header */
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 120px; /* Adjust logo size */
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item, .btn {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: #8e24aa; /* Darker purple */
+    transition: background-color 0.3s;
+}
+
+.nav-item:hover, .btn:hover {
+    background-color: #ab47bc; /* Lighter purple on hover */
+}
+
+.section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #4a148c; /* Dark purple for sections */
+    border-radius: 10px;
+}
+
+.section h2 {
+    color: #ffeb3b; /* Yellow for headers */
+}
+
+.section p {
+    margin-bottom: 15px; /* Space between paragraphs */
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.contact-card {
+    background-color: #5e35b1; /* Slightly lighter purple */
+    border-radius: 15px;
+    padding: 20px;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.icon-large {
+    font-size: 40px; /* Large icon size */
+    margin-bottom: 10px; /* Space below the icon */
+}
+
+.icon {
+    width: 20px; /* Adjust icon size */
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .contact-container {
+        flex-direction: column; /* Stack contact cards on small screens */
+    }
+    .contact-card {
+        margin: 10px 0; /* Space between cards */
+    }
+}

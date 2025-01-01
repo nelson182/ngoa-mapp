@@ -1,0 +1,406 @@
+.noexpand img{
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 30px;
+}
+.noexpand{
+    background-color: black;
+    border: none;
+    overflow: hidden;
+}
+/* Personnalisations CSS (exemple) */
+body {
+    background-color: #212529;
+}
+
+.list-group-item {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}
+.element{
+    margin-top: 10px;
+    margin-left: 0;
+}
+.container {
+    background-color: #212529; /* Fond sombre */
+    color: #fff; /* Texte blanc */
+  }
+  
+  .list-group-item {
+    background-color: #343a40;
+    color: #fff;
+    border: none; /* Supprime les bordures par défaut */
+  }
+  
+  .time-remaining {
+    font-size: 0.8em; /* Réduit la taille de la police pour le temps restant */
+  }
+
+  .element{
+    margin-top: 4px;
+    border: 0.5px solid rgb(2, 2, 46);
+    border-radius: 5px;
+    margin-left: 0;
+    padding: 20px;
+    position: relative;
+    background-color: black;
+  }
+  .badge{
+    margin-right: 10px;
+    position: absolute;
+    right: 0;
+}
+/* Pour la plupart des navigateurs (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 2px; /* Largeur de la barre */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #007bff; /* Couleur de fond du rail */
+    border: none;
+    border-radius: 30%;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #212529; /* Couleur du curseur (bleu primaire) */
+    border-radius: 30%; /* Arrondir les coins du curseur */
+  }
+  
+  /* Pour Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #007bff #142b44; /* Couleur du curseur et du rail */
+  }
+  #share{
+    background-color: black;
+  }
+
+  .first{
+    position: relative;
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Style global du menu déroulant */
+.dropdown-menu {
+    display: none; /* Le menu est caché par défaut */
+    position: fixed;
+    top: 0;
+    left: -250px;  /* Menu caché initialement à gauche */
+    width: 250px;
+    height: 100%;
+    background-color: #2c3e50; /* Fond principal du menu */
+    color: white;
+    padding: 25px;
+    box-sizing: border-box;
+    z-index: 1100;
+    transition: left 0.3s ease;
+    border-radius: 10px 0 0 10px; /* Coins arrondis à gauche */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Ombre douce */
+}
+
+/* Conteneur du logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+/* Logo circulaire avec bordure et ombre */
+.logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 3px solid #ecf0f1;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+/* Effet de zoom sur le logo au survol */
+.logo:hover {
+    transform: scale(1.1); /* Agrandir légèrement le logo au survol */
+}
+
+/* Style de chaque élément de menu */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    color: #ecf0f1; /* Texte clair */
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #34495e; /* Fond initial des éléments */
+    transition: all 0.3s ease;
+    border: 2px solid transparent; /* Bordure initiale transparente */
+}
+
+/* Style des icônes */
+.dropdown-item i {
+    margin-right: 15px;
+    font-size: 24px; /* Taille légèrement plus grande pour les icônes */
+    transition: transform 0.3s ease;
+}
+
+/* Effet de transformation des icônes au survol */
+.dropdown-item:hover i {
+    transform: translateX(8px); /* Déplacement horizontal au survol */
+}
+
+/* Effet au survol de chaque élément */
+.dropdown-item:hover {
+    background-color: #1abc9c; /* Fond vert au survol */
+    color: white; /* Texte en blanc pour contraster */
+    border: 2px solid #16a085; /* Bordure verte au survol */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Ombre accentuée au survol */
+}
+
+/* Animation de transition fluide */
+.dropdown-item span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Zoom sur le texte au survol */
+.dropdown-item:hover span {
+    transform: translateX(5px); /* Légère translation du texte */
+}
+
+/* Overlay qui recouvre la page */
+.overlay {
+    display: none;  /* L'overlay est caché par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fond semi-transparent */
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+.text-overlay a {
+    text-decoration: none;  /* Enlever le soulignement */
+}
+
+.text-overlay a:hover {
+    text-decoration: none;  /* S'assurer qu'il n'y a pas de soulignement au survol */
+}
+
+/* Transition et effet d'ouverture du menu */
+#dropdownMenu {
+    transition: transform 0.3s ease;
+}
+
+/* Style du menu sur mobile (si nécessaire) */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        width: 200px; /* Réduire la largeur du menu sur mobile */
+        padding: 15px;
+    }
+    .dropdown-item {
+        font-size: 16px;
+    }
+}
+
+
+
+/* Style du profil (avatar) */
+#profile {
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+
+
+
+.user-profile img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-bottom: 10px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: #e0e0e0;
+}
+
+.content {
+    margin-left: 270px;
+    padding: 20px;
+}
+#profile:hover{
+    cursor: pointer;
+    scale: 1.02;
+    
+}
+
+
+#map {
+    height: 100vh;  /* La carte prend toute la hauteur de la fenêtre */
+    width: 100%;
+    z-index: 900;  /* La carte reste en arrière-plan */
+}
+
+/* Conteneur pour les textes alignés horizontalement */
+.horizontal-texts {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap; /* Les cadres passent à la ligne si nécessaire */
+    justify-content: space-around;
+    width: 80%;
+    z-index: 500;
+    padding: 20px;
+}
+
+/* Style des cadres dynamiques */
+.text-overlay {
+    margin: 0px; /* Espacement entre les éléments */
+    background-color: #f8f9fa; /* Couleur de fond */
+    border-radius: 25px; /* Bords arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    display: inline-flex; /* Aligne les icônes et textes */
+    align-items: center; /* Centre verticalement */
+    justify-content: flex-start; /* Aligne à gauche les éléments dans le cadre */
+    text-align: center;
+    color: #343a40; /* Couleur du texte */
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px; /* Marges internes pour un espacement contrôlé */
+    min-width: 100px; /* Largeur minimale */
+    border: 1px solid #ddd; /* Optionnel : bordure pour un visuel net */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Icônes dans les cadres */
+.text-overlay i {
+    font-size: 20px; /* Taille de l'icône */
+    margin-right: 10px; /* Espacement entre l'icône et le texte */
+    color: #007bff; /* Couleur de l'icône */
+}
+
+/* Texte dans les cadres */
+.text-overlay span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #343a40;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+/* Effet au survol */
+.text-overlay:hover {
+    transform: scale(1.05); /* Légère mise en avant */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombre accentuée */
+}
+
+
+
+
+
+  
+  /* Responsive pour les écrans moyens et plus grands */
+  @media (max-width: 768px) {
+    /* Affiche la div seulement sur les écrans moyens et plus grands */
+    .horizontal-texts {
+
+        position: fixed;
+  top: 20px; /* Ajuste cette valeur pour la position verticale */
+  right: 20px; /* Positionne la div à droite */
+  background-color: #3498db; /* Choisis la couleur de fond pour la div ronde */
+  border-radius: 50%; /* Rendre la div ronde */
+  width: 50px; /* Taille de la div ronde */
+  height: 50px; /* Taille de la div ronde */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 99990000000000000000000000000; /* Assure que la div soit toujours au-dessus des autres éléments */
+  transition: all 0.3s ease; /* Transition douce pour le dépliage */
+      display: flex;
+    }
+  
+    .horizontal-texts.active {
+      width: 200px; /* S'agrandit pour montrer les éléments */
+      height: auto;
+      border-radius: 10px; /* Rendre les bords un peu plus arrondis lorsqu'elle est dépliée */
+      padding: 10px;
+    }
+  
+    .horizontal-texts .text-overlay {
+      display: none; /* Cache les éléments par défaut */
+      margin-top: 10px;
+      text-align: center;
+    }
+  
+    .horizontal-texts.active .text-overlay {
+      display: block; /* Affiche les éléments lorsque la div est dépliée */
+    }
+  
+    .horizontal-texts a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      padding: 5px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .horizontal-texts a:hover {
+      background-color: rgba(255, 255, 255, 0.2); /* Effet de survol */
+    }
+  }
+  

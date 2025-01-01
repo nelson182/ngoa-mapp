@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or 'Ma Application' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Accueil</a></li>
+                <li><a href="{{ url_for('about') }}">À propos</a></li>
+                <li><a href="{{ url_for('account') }}">Mon Compte</a></li>
+                <li><a href="{{ url_for('logout') }}">Se déconnecter</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="account">
+                <a href="{{ url_for('account') }}"><strong>Compte</strong></a>
+            </div>
+            <div class="share">
+                <a href="{{ url_for('share') }}"><strong>Partager sa position</strong></a>
+            </div>
+            <div class="about">
+                <a href="{{ url_for('about') }}"><strong>À propos</strong></a>
+            </div>
+            <div class="evaluate">
+                <a href="{{ url_for('evaluer') }}"><strong>Évaluer l'application</strong></a>
+            </div>
+        </div>
+        
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; {{ current_year }} Ma Application</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* share.css */
+body {
+    background-color: #9b59b6;  /* Violet plus clair et pétillant */
+    color: #ecf0f1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.btn-back {
+    position: fixed;  /* Utilisez fixed pour le fixer par rapport à la fenêtre du navigateur */
+    top: 20px;    /* Distance du haut de la page */
+    left: 20px;   /* Distance du bord gauche de la page */
+    display: inline-block;
+    background-color: #8e44ad;  /* Violet foncé */
+    color: #ecf0f1;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #732d91;  /* Violet plus foncé */
+    transform: translateY(-2px);  /* Effet de léger mouvement */
+}
+
+.container {
+    background-color: #8e44ad; /* Violet brillant */
+    padding: 40px 40px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    top: 40px;  /* Ajustez si nécessaire */
+}
+
+.logo {
+    width: 150px;  /* Taille ajustée du logo */
+    margin-bottom: 20px;  /* Espacement sous le logo */
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.1);  /* Effet de zoom sur le logo */
+}
+
+h1 {
+    color: #ffffff;  /* Blanc éclatant */
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 25px;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.share-link {
+    background-color: #6a1b9a;  /* Violet foncé */
+    border: none;
+    border-radius: 4px;
+    color: #ecf0f1;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+.share-link:focus {
+    background-color: #8e44ad; /* Changement de couleur au focus */
+    outline: none;
+}
+
+.copy-btn {
+    background-color: #9b59b6;  /* Violet plus doux */
+    border: none;
+    border-radius: 4px;
+    color: #ecf0f1;
+    font-size: 1.2em;
+    padding: 12px 25px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.copy-btn:hover {
+    background-color: #8e44ad;  /* Violet foncé au hover */
+    transform: scale(1.05);  /* Légère augmentation de taille */
+}
+
+input, button {
+    font-family: 'Arial', sans-serif;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 30px;
+    }
+
+    .btn-back {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+
+    .logo {
+        width: 80px;
+    }
+}
+

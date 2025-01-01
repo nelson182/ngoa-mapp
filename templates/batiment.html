@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bâtiments - NgoaMaps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/batiment.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('accueil') }}">Retour à l'accueil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Affichage temporaire de la variable 'option' pour débogage -->
+        <p>Option: {{ option }}</p>  <!-- Ceci vous aidera à vérifier la valeur de 'option' -->
+
+        <!-- Affichage dynamique du titre en fonction de l'option -->
+        <h1>
+            {% if option == 'Restaurant' %}
+                Informations sur les Restaurants
+            {% elif option == 'Amphi' %}
+                Informations sur les Amphithéâtres
+            {% elif option == 'Département' %}
+                Informations sur les Départements
+            {% elif option == 'Décanat' %}
+                Informations sur le Décanat
+            {% elif option == 'Rectorat' %}
+                Informations sur le Rectorat
+            {% elif option == 'Bibliothèque' %}
+                Informations sur les Bibliothèques
+            {% else %}
+                Informations sur les Bâtiments
+            {% endif %}
+        </h1>
+
+        <section class="batiment-list">
+            {% if batiments %}
+                {% for batiment in batiments %}
+                    <div class="batiment-item">
+                        <h2 class="batiment-name">{{ batiment.nom }}</h2>
+                        <p><strong>Type:</strong> {{ batiment.type }}</p>
+                        <p><strong>Description:</strong> {{ batiment.description }}</p>
+                        <p><strong>Coordonnées:</strong> ({{ batiment.coordonneex }}, {{ batiment.coordonneey }})</p>
+                        
+                        {% if batiment.images %}
+                            <div class="batiment-image">
+                                <img src="{{ batiment.images }}" alt="Image de {{ batiment.nom }}">
+                            </div>
+                        {% else %}
+                            <p>Aucune image disponible pour ce bâtiment.</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucun bâtiment trouvé pour cette option.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p></p>
+    </footer>
+</body>
+</html>
+

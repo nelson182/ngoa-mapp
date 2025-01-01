@@ -1,0 +1,197 @@
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header .top-bar {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    text-align: left;
+}
+
+header .home-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+header .home-link:hover {
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.account-container {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.profile-section {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-section img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.user-name {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 5px 5px;
+    margin: 10px 0;
+    width: 70%; /* Réduit la taille des cartes */
+    text-align: left; /* Aligne le texte à gauche */
+}
+
+.info-card label {
+    font-weight: bold;
+}
+
+.update-btn {
+    display: block;
+    background: #6a11cb;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.update-btn:hover {
+    background: #2575fc;
+    transform: scale(1.05);
+}
+
+.welcome-section {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.welcome-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #7fdbff;
+    border-radius: 5px;
+    font-size: 1em;
+    background: #001c30;
+    color: #fff;
+}
+
+.save-btn {
+    display: block;
+    background: #6a11cb;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.save-btn:hover {
+    background: #2575fc;
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+}
+
+footer .logout-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+footer .logout-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .account-container {
+        flex-direction: column;
+    }
+
+    .profile-section {
+        border-right: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .info-card {
+        width: 90%;
+    }
+
+    .welcome-section {
+        padding: 20px;
+    }
+}
