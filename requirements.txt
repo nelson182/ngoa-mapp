@@ -1,0 +1,10 @@
+flask
+osmnx
+pymysql
+dotenv
+sqlalchemy
+fuzzywuzzy
+logging
+werkzeug
+flask_sqlalchemy
+scikit-learn
