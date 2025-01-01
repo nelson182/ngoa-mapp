@@ -8,4 +8,5 @@ fuzzywuzzy
 logging
 werkzeug
 flask_sqlalchemy
-scikit-learn==1.2.0
+scikit-learn
+numpy
