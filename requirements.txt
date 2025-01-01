@@ -1,0 +1,11 @@
+flask
+gunicorn
+osmnx
+pymysql
+dotenv
+sqlalchemy
+fuzzywuzzy
+logging
+werkzeug
+flask_sqlalchemy
+scikit-learn
