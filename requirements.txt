@@ -2,7 +2,7 @@ flask
 gunicorn
 osmnx
 pymysql
-dotenv
+python-dotenv
 sqlalchemy
 fuzzywuzzy
 logging
