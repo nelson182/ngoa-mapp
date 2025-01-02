@@ -178,6 +178,7 @@ document.addEventListener('click', function(event) {
 // Activer la localisation de l'utilisateur
 document.getElementById('fonction1').addEventListener('click', function(){
     trouverPositionUtilisateur();
+    console.log("ok bonne position :)");
 });
 //fonction pour suggerer les amphis
 function chargerAmphis() {
