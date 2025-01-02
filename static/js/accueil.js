@@ -311,9 +311,10 @@ function afficherMessage(message, couleur) {
     messageBox.style.color = 'white';
     messageBox.style.padding = '15px';
     messageBox.style.borderRadius = '5px';
-    messageBox.style.zIndex = '1000';
+    messageBox.style.zIndex = '10000000000000000000000000';
     messageBox.style.textAlign = 'center';
     document.body.appendChild(messageBox);
+    console.log("message affiché!");
 
     // Gestionnaire d'événements pour détecter les clics en dehors
     function handleClickOutside(event) {
@@ -387,7 +388,7 @@ function suivreUtilisateurEtAfficherItineraire(destinationCoords) {
                         afficherMessage("Erreur lors du calcul de l'itinéraire ", "red");
                     }
                 })
-                .catch(err => afficherMessage("Erreur lors de la requête de l'itinéraire : " , "red"));
+                .catch(err => afficherMessage("Erreur lors de la requête de l'itinéraire : "+ err , "red"));
         },
         (error) => {
             afficherMessage("Impossible d'obtenir votre position  ", "red");
@@ -398,10 +399,18 @@ function suivreUtilisateurEtAfficherItineraire(destinationCoords) {
 
 // Gestionnaire pour la fonctionnalité "itinéraire"
 document.getElementById('fonction2').addEventListener('click', () => {
+    console.log("bouton d'itinéraire cliqué");
     if (marker.length === 0) {
-        afficherMessage("Aucun marqueur trouvé sur la carte.", "red");
+        console.log("bouton d'itinéraire cliqué et verification des markers");
+
+        alert("aucun lieu recherché sur la carte ");
+        afficherMessage("aucun lieu recherché" , "red");
+           
+        console.log("bouton d'itinéraire cliqué et affichage au user aussi!");
+        
         return;
     }
+    console.log("bouton d'itinéraire cliqué et verification terminée");
 
     // Prendre le premier marqueur du tableau comme destination
     const destinationMarker = marker[0];
@@ -488,8 +497,6 @@ function removeAllMarkers() {
     marker = [];
 }
 
-// Appeler la fonction lorsque la page est prête
-document.addEventListener("DOMContentLoaded", handleSearch);
 
 
 // Fonction pour copier la position d'un élément de classe "share" au format "@@[x y]"

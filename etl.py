@@ -1,7 +1,3 @@
-
-
-
-
 from flask import Flask
 from __init__ import create_app, db
 import lxml.etree as ET
@@ -10,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import IntegrityError
 import pymysql
 pymysql.install_as_MySQLdb()
-# ... (Votre modèle Batiment et la configuration de la base de données restent inchangés)
+# ... ( modèle Batiment et la configuration de la base de données restent inchangés)
 Base = declarative_base()
 
 class Batiment(db.Model):
@@ -34,6 +30,7 @@ class Salle(db.Model):
     coordonneey = db.Column(db.Float, default=None)
     images = db.Column(db.String(255), default="/images/default.jpg")
     id_batiment = db.Column(db.Integer, db.ForeignKey('batiments.id'), default=None)
+    batiments = db.relationship('Batiment' , back_populates='salles')
 
     # Relation avec la classe Batiment (clé étrangère)
     batiment = db.relationship('Batiment', back_populates='salles')
@@ -41,10 +38,9 @@ app = create_app()
 
 # Configuration de la base de données
 # Créer la session SQLAlchemy
-engine = create_engine(f'mysql+pymysql://ngoa:Info_331@localhost/ngoa')
+engine = create_engine(f'mysql://root:QLkbNBDfWudjxFlceZdhilMyFDyVOvul@junction.proxy.rlwy.net:29125/railway')
 Session = sessionmaker(bind=engine)
 db_session = Session()
-
 
 
 def extraire_et_inserer_batiments(fichier_osm):
@@ -59,53 +55,69 @@ def extraire_et_inserer_batiments(fichier_osm):
     for node in root.iter('node'):
         nodes_coords[int(node.get('id'))] = (float(node.get('lat')), float(node.get('lon')))
 
+    # Obtenir tous les noms déjà présents dans la base
+    session = Session()
+    try:
+        noms_existants = {b.nom for b in session.query(Batiment.nom).all()}
+        print(noms_existants)
+    finally:
+        session.close()
+
     for tag in root.iter('tag'):
         if tag.get('k') == 'name':
             parent = tag.getparent()
             if parent is not None:
                 if parent.tag == 'node':
+                    # Cas d'un nœud
                     lat = float(parent.get('lat')) if parent.get('lat') else None
                     lon = float(parent.get('lon')) if parent.get('lon') else None
-                    batiments.append(Batiment(nom=tag.get('v'), coordonneex=lat, coordonneey=lon))
+                    nom = tag.get('v')
+                    if nom not in noms_existants:  # Vérifier si le nom n'existe pas déjà
+                        batiments.append(Batiment(nom=nom, coordonneex=lat, coordonneey=lon))
                 elif parent.tag == 'way':
-                    first_nd = parent.find('./nd')
-                    if first_nd is not None:
-                        ref = int(first_nd.get('ref'))
+                    # Parcourir tous les <nd> pour trouver une correspondance
+                    for nd in parent.findall('./nd'):
+                        ref = int(nd.get('ref'))
                         if ref in nodes_coords:
                             lat, lon = nodes_coords[ref]
-                            batiments.append(Batiment(nom=tag.get('v'), coordonneex=lat, coordonneey=lon))
+                            nom = tag.get('v')
+                            if nom not in noms_existants:  # Vérifier si le nom n'existe pas déjà
+                                batiments.append(Batiment(nom=nom, coordonneex=lat, coordonneey=lon))
+                            break  # Trouvé, pas besoin de vérifier les autres <nd>
                         else:
                             print(f"Node avec ref {ref} non trouvé pour le way {parent.get('id')}")
                 elif parent.tag == 'relation':
-                    # Itérer sur les members de type 'way' jusqu'à en trouver un valide
+                    # Cas d'une relation avec des members de type 'way'
                     for member in parent.findall("./member[@type='way']"):
                         way_ref = int(member.get('ref'))
                         way = root.find(f"./way[@id='{way_ref}']")
                         if way is not None:
-                            first_nd_way = way.find('./nd')
-                            if first_nd_way is not None:
-                                ref_nd_way = int(first_nd_way.get('ref'))
-                                if ref_nd_way in nodes_coords:
-                                    lat, lon = nodes_coords[ref_nd_way]
-                                    batiments.append(Batiment(nom=tag.get('v'), coordonneex=lat, coordonneey=lon))
-                                    break  # Sortir de la boucle dès qu'un way valide est trouvé
+                            for nd in way.findall('./nd'):
+                                ref = int(nd.get('ref'))
+                                if ref in nodes_coords:
+                                    lat, lon = nodes_coords[ref]
+                                    nom = tag.get('v')
+                                    if nom not in noms_existants:  # Vérifier si le nom n'existe pas déjà
+                                        batiments.append(Batiment(nom=nom, coordonneex=lat, coordonneey=lon))
+                                    break  # Trouvé, sortir de la boucle
                                 else:
-                                    print(f"Node avec ref {ref_nd_way} non trouvé pour le way {way_ref} dans la relation {parent.get('id')}")
-                            else:
-                                print(f"Way {way_ref} sans nd trouvé dans la relation {parent.get('id')}")
+                                    print(f"Node avec ref {ref} non trouvé pour le way {way_ref} dans la relation {parent.get('id')}")
+                            break  # Trouvé, pas besoin de vérifier d'autres members
                         else:
                             print(f"Way avec id {way_ref} non trouvé pour la relation {parent.get('id')}")
-                    else: #Cette instruction else est executé si la boucle for s'est terminé sans rencontrer de break
+                    else:
                         print(f"Aucun way valide trouvé dans la relation {parent.get('id')}")
 
                 if len(batiments) >= batch_size:
                     inserer_batiments(batiments)
+                    # Mettre à jour les noms existants
+                    noms_existants.update(b.nom for b in batiments)
                     batiments = []
 
     if batiments:
         inserer_batiments(batiments)
 
-# ... (fonction inserer_batiments inchangée)
+
 def inserer_batiments(batiments):
     """Insère un lot de bâtiments dans la base de données."""
     session = Session()

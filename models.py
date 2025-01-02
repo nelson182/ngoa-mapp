@@ -1,6 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from __init__ import create_app, db
+from __init__ import db
 
 class User(db.Model):  # Nom de la classe en français
     __tablename__ = 'utilisateurs'  # Le nom de la table dans la base de données

@@ -41,7 +41,6 @@ def create_app():
 
     # Construire l'URI de la base de données MySQL
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root:QLkbNBDfWudjxFlceZdhilMyFDyVOvul@junction.proxy.rlwy.net:29125/railway'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialiser SQLAlchemy avec Flask
     db.init_app(app)
@@ -304,6 +303,7 @@ def evaluer():
             db.session.commit()
 
             flash("Merci pour votre évaluation !", "success")
+            print("évaluation envoyée")
             return redirect(url_for('accueil'))
         except ValueError:
             flash("Veuillez entrer une note valide.", "danger")
@@ -443,29 +443,55 @@ def recherche():
             cursor.execute(query)  # Récupérer tous les lieux de 'batiments' et 'salles'
             results = cursor.fetchall()  # Récupérer tous les résultats
 
-            # Utiliser fuzzywuzzy pour rechercher les lieux correspondant au terme de recherche
-            matches = []
-            for result in results:
-                nom, latitude, longitude, description, images = result
-                # Calculer la similarité avec fuzzywuzzy (comparaison entre nom recherché et nom de chaque lieu)
-                similarity = fuzz.ratio(nom_recherche.lower(), nom.lower())
-                
-                if similarity >=65:  # Seulement les résultats ayant un score de similarité supérieur à 65
-                    matches.append({
-                        "nom": nom,
-                        "latitude": latitude,
-                        "longitude": longitude,
-                        "description": description,
-                        "images": images.split(',')  # Les images sont séparées par des virgules
-                    })
-            print(matches)
-            if matches:
-                return jsonify({
-                    "status": "success",
-                    "data": matches
+                # Utiliser fuzzywuzzy pour rechercher les lieux correspondant au terme de recherche
+        matches = []
+        nom_recherche = nom_recherche.lower()
+
+        # Étape 1 : Recherche directe (mot recherché dans le nom)
+        for result in results:
+            nom, latitude, longitude, description, images = result
+            if nom_recherche in nom.lower():  # Vérifie si le mot recherché est dans le nom
+                matches.append({
+                    "nom": nom,
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "description": description,
+                    "images": images.split(',')  # Les images sont séparées par des virgules
                 })
-            else:
-                return jsonify({"status": "error", "message": "Aucun lieu trouvé."})
+
+        # Étape 2 : Recherche par similarité pour les non-correspondances directes
+        for result in results:
+            nom, latitude, longitude, description, images = result
+
+            # Ignorer les noms déjà sélectionnés par la recherche directe
+            if any(match["nom"] == nom for match in matches):
+                continue
+
+            # Calculer la similarité avec fuzzywuzzy
+            similarity = fuzz.ratio(nom_recherche, nom.lower())
+            print(nom_recherche, nom.lower())
+
+            if similarity >= 65:  # Seulement les résultats ayant un score de similarité supérieur à 65
+                matches.append({
+                    "nom": nom,
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "description": description,
+                    "images": images.split(',')  # Les images sont séparées par des virgules
+                })
+
+        # Retourner les résultats
+        print(matches)
+        if matches:
+            response = {
+                "status": "success",
+                "data": matches
+            }
+        else:
+            response = {"status": "error", "message": "Aucun lieu trouvé."}
+
+        # Retourne la réponse (si utilisé dans un contexte Flask, par exemple)
+        return jsonify(response)
 
     finally:
         connection.close()
@@ -476,6 +502,7 @@ def itineraire():
     """
     Calculer l'itinéraire entre l'utilisateur et un lieu.
     """
+    print("asked itineraire to backend")
     campus_bounds = {
         "min_lat": 3.84747,
         "max_lat": 3.86849,

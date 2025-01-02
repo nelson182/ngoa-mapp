@@ -11,3 +11,4 @@ flask_sqlalchemy
 scikit-learn
 numpy
 lxml
+python-Levenshtein
