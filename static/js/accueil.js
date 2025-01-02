@@ -60,7 +60,7 @@ function trouverPositionUtilisateur() {
                 .catch(err => console.error("Erreur lors de l'envoi de la position :", err));
         },
         (error) => {
-            afficherMessage("Impossible d'obtenir votre position : " + error.message);
+            afficherMessage("Impossible d'obtenir votre position : " + error.message , "red");
         },
         { enableHighAccuracy: true }
     );
