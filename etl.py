@@ -22,6 +22,7 @@ class Batiment(db.Model):
     type = db.Column(db.String(255), default="Inconnu")
     images = db.Column(db.String(255), default="/images/default.jpg")
     description = db.Column(db.String(255), default="non précisé")
+    salles = db.relationship('Salle' , back_populates='batiments' , cascade='all, delete-orphan')
 
 class Salle(db.Model):
     __tablename__ = 'salles'

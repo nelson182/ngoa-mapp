@@ -495,5 +495,5 @@ def itineraire():
             return jsonify({"status": "error", "message": str(e)})
     else:
         return jsonify({"status": "error", "message": "Vous n'êtes pas dans la zone du campus."})
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0' , port=5000, debug=True)
+if __name__ == '__main__':
+   app.run(host='0.0.0.0' , port=5000, debug=True)

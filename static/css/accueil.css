@@ -357,16 +357,15 @@ body {
     /* Affiche la div seulement sur les écrans moyens et plus grands */
     .horizontal-texts {
 
+transform: translateX(0);
         position: fixed;
-  top: 20px; /* Ajuste cette valeur pour la position verticale */
-  right: 20px; /* Positionne la div à droite */
+  top: 15%; /* Ajuste cette valeur pour la position verticale */
+  left: 70%; /* Positionne la div à droite */
+  margin-right: 2px;
   background-color: #3498db; /* Choisis la couleur de fond pour la div ronde */
   border-radius: 50%; /* Rendre la div ronde */
   width: 50px; /* Taille de la div ronde */
   height: 50px; /* Taille de la div ronde */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   z-index: 99990000000000000000000000000; /* Assure que la div soit toujours au-dessus des autres éléments */
   transition: all 0.3s ease; /* Transition douce pour le dépliage */
