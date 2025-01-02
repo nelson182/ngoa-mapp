@@ -360,7 +360,7 @@ body {
 transform: translateX(0);
         position: fixed;
   top: 10%; /* Ajuste cette valeur pour la position verticale */
-  left: 45%; /* Positionne la div à droite */
+  left: 25%; /* Positionne la div à droite */
   margin-right: 2px;
   background-color: #3498db; /* Choisis la couleur de fond pour la div ronde */
   border-radius: 50%; /* Rendre la div ronde */

@@ -29,7 +29,7 @@ let routeLayer = null;
 // Fonction 1 : Localisation de l'utilisateur
 function trouverPositionUtilisateur() {
     if (!navigator.geolocation) {
-        afficherMessage("La géolocalisation n'est pas prise en charge par votre navigateur.");
+        afficherMessage("La géolocalisation n'est pas prise en charge par votre navigateur." , "red");
         return;
     }
 
@@ -54,13 +54,13 @@ function trouverPositionUtilisateur() {
                             map.setView([latitude, longitude], 19);
                         }
                     } else {
-                        afficherMessage(data.message , "red");
+                        afficherMessage("vous n'etes pas dans la zone du campus" , "red");
                     }
                 })
                 .catch(err => console.error("Erreur lors de l'envoi de la position :", err));
         },
         (error) => {
-            afficherMessage("Impossible d'obtenir votre position : " + error.message , "red");
+            afficherMessage("Impossible d'obtenir votre position : " , "red");
         },
         { enableHighAccuracy: true }
     );
@@ -362,13 +362,13 @@ function suivreUtilisateurEtAfficherItineraire(destinationCoords) {
                             afficherMessage("Vous êtes arrivé.", "green");
                         }
                     } else {
-                        afficherMessage("Erreur lors du calcul de l'itinéraire : " + data.message, "red");
+                        afficherMessage("Erreur lors du calcul de l'itinéraire ", "red");
                     }
                 })
-                .catch(err => afficherMessage("Erreur lors de la requête de l'itinéraire : " + err.message, "red"));
+                .catch(err => afficherMessage("Erreur lors de la requête de l'itinéraire : " , "red"));
         },
         (error) => {
-            afficherMessage("Impossible d'obtenir votre position : " + error.message, "red");
+            afficherMessage("Impossible d'obtenir votre position  ", "red");
         },
         { enableHighAccuracy: true }
     );
@@ -443,7 +443,7 @@ function handleSearch() {
                 // Ajouter une popup au marqueur
                 marker.bindPopup(`ses Coordonnées : ${latitude}, ${longitude}`).openPopup();
             } catch (error) {
-                afficherMessage("Mauvaise copie ! " + error.message);
+                afficherMessage("Mauvaise copie ! " ,"red");
             }
         } else {
             //enlever les itinéraires
@@ -455,7 +455,7 @@ function handleSearch() {
         }
 }
 else {
-        afficherMessage("Veuillez entrer un nom de lieu à rechercher.");
+        afficherMessage("Veuillez entrer un nom de lieu à rechercher.", "red");
     }
 });
 }
@@ -489,11 +489,11 @@ function activerPartage() {
                 navigator.clipboard.writeText(positionFormat)
                     .then(() => {
                         // Afficher une afficherMessagee de succès
-                        afficherMessage("Position copiée avec succès!");
+                        afficherMessage("Position copiée avec succès!" , "red");
                     })
                     .catch(err => {
                         console.error("Erreur lors de la copie :", err);
-                        afficherMessage("Impossible de copier la position.");
+                        afficherMessage("Impossible de copier la position." , "red");
                     });
             } else {
                 afficherMessage("Position non disponible.");
