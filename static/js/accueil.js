@@ -55,6 +55,7 @@ function trouverPositionUtilisateur() {
                         }
                     } else {
                         afficherMessage("vous n'etes pas dans la zone du campus" , "red");
+                        
                     }
                 })
                 .catch(err => console.error("Erreur lors de l'envoi de la position :", err));
@@ -175,7 +176,9 @@ document.addEventListener('click', function(event) {
 });
 
 // Activer la localisation de l'utilisateur
-document.getElementById('fonction1').addEventListener('click', trouverPositionUtilisateur);
+document.getElementById('fonction1').addEventListener('click', function(){
+    trouverPositionUtilisateur();
+});
 //fonction pour suggerer les amphis
 function chargerAmphis() {
     fetch('/api/amphis')
