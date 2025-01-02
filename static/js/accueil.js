@@ -94,7 +94,7 @@ function rechercherLieu(nom) {
                     resultCard.innerHTML = `
                         <h3>${lieu.nom}</h3>
                         <p>${lieu.description}</p>
-                        <img src="${lieu.images[0]}" alt="Image" />
+                        <img src="static/${lieu.images[0]}" alt="Image" />
                     `;
 
                     resultCard.addEventListener('click', function() {
@@ -121,7 +121,7 @@ function rechercherLieu(nom) {
                         map.setView([lieu.latitude, lieu.longitude], 19);
                     
                         // Ajouter une popup au marqueur avec des informations sur le lieu
-                        lieuMarker.bindPopup(`<b>${lieu.nom}</b><br>${lieu.description}<br><img src="${lieu.images[0]}" alt="Image" style="width:100px; height:50px;">`)
+                        lieuMarker.bindPopup(`<b>${lieu.nom}</b><br>${lieu.description}<br><img src="static/${lieu.images[0]}" alt="Image" style="width:100px; height:50px;">`)
                             .openPopup();
                     
                         // Masquer la div des résultats après la sélection
@@ -207,7 +207,7 @@ function chargerAmphis() {
                     amphiContainer.innerHTML = `
                         <strong>${amphi.nom}</strong><br>
                         <span>${amphi.description}</span>
-                        <br><img src="${amphi.images[0]}" alt="Image" style="width:100px; height:50px;">
+                        <br><img src="static/${amphi.images[0]}" alt="Image" style="width:100px; height:50px;">
                     `;
                      
                    
@@ -242,7 +242,7 @@ function chargerAmphis() {
                         map.setView([amphi.latitude, amphi.longitude], 19);
   
                         // Ajouter une popup au marqueur avec les informations sur l'amphi
-                        amphiMarker.bindPopup(`<b>${amphi.nom}</b><br>${amphi.description}<br><img src="${amphi.images[0]}" alt="Image" style="width:100px; height:50px;">`).openPopup();
+                        amphiMarker.bindPopup(`<b>${amphi.nom}</b><br>${amphi.description}<br><img src="static/${amphi.images[0]}" alt="Image" style="width:100px; height:50px;">`).openPopup();
                     });
   
                     navbar.appendChild(amphiContainer);
