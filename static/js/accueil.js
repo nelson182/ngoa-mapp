@@ -33,10 +33,10 @@ function trouverPositionUtilisateur() {
         return;
     }
 
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
         (position) => {
             const { latitude, longitude } = position.coords;
-
+    
             // Envoyer la position au serveur pour validation
             fetch('/api/position', {
                 method: 'POST',
@@ -54,17 +54,17 @@ function trouverPositionUtilisateur() {
                             map.setView([latitude, longitude], 19);
                         }
                     } else {
-                        afficherMessage("vous n'etes pas dans la zone du campus" , "red");
-                        
+                        afficherMessage("Vous n'êtes pas dans la zone du campus", "red");
                     }
                 })
                 .catch(err => console.error("Erreur lors de l'envoi de la position :", err));
         },
         (error) => {
-            afficherMessage("Impossible d'obtenir votre position : " , "red");
+            afficherMessage("Impossible d'obtenir votre position : " + error.message, "red");
         },
         { enableHighAccuracy: true }
     );
+    
 }
 var marker=[];
 // Fonction 2 : Recherche et itinéraire
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// Fonction : Afficher un message temporaire
+// Fonction : Afficher un message temporaire avec gestion de clics en dehors
 function afficherMessage(message, couleur) {
     const messageBox = document.createElement('div');
     messageBox.textContent = message;
@@ -312,12 +312,30 @@ function afficherMessage(message, couleur) {
     messageBox.style.padding = '15px';
     messageBox.style.borderRadius = '5px';
     messageBox.style.zIndex = '1000';
+    messageBox.style.textAlign = 'center';
     document.body.appendChild(messageBox);
 
+    // Gestionnaire d'événements pour détecter les clics en dehors
+    function handleClickOutside(event) {
+        if (!messageBox.contains(event.target)) {
+            // Supprime la boîte de message et l'écouteur d'événements
+            document.body.removeChild(messageBox);
+            document.removeEventListener('click', handleClickOutside);
+        }
+    }
+
+    // Ajouter un écouteur pour les clics en dehors
+    document.addEventListener('click', handleClickOutside);
+
+    // Supprimer automatiquement après 3 secondes si aucun clic
     setTimeout(() => {
-        document.body.removeChild(messageBox);
+        if (document.body.contains(messageBox)) {
+            document.body.removeChild(messageBox);
+            document.removeEventListener('click', handleClickOutside);
+        }
     }, 3000); // Supprime le message après 3 secondes
 }
+
 
 // Fonction : Suivre la position de l'utilisateur et mettre à jour l'itinéraire
 function suivreUtilisateurEtAfficherItineraire(destinationCoords) {
