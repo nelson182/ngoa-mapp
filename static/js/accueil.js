@@ -29,7 +29,7 @@ let routeLayer = null;
 // Fonction 1 : Localisation de l'utilisateur
 function trouverPositionUtilisateur() {
     if (!navigator.geolocation) {
-        alert("La géolocalisation n'est pas prise en charge par votre navigateur.");
+        afficherMessage("La géolocalisation n'est pas prise en charge par votre navigateur.");
         return;
     }
 
@@ -54,7 +54,7 @@ function trouverPositionUtilisateur() {
                             map.setView([latitude, longitude], 19);
                         }
                     } else {
-                        alert(data.message);
+                        afficherMessage(data.message , "red");
                     }
                 })
                 .catch(err => console.error("Erreur lors de l'envoi de la position :", err));
@@ -160,7 +160,7 @@ document.getElementsByClassName('searchbutton')[0].addEventListener('click', () 
     if (searchInput.trim()) {
         rechercherLieu(searchInput);
     } else {
-        alert("Veuillez entrer un nom de lieu à rechercher.");
+        afficherMessage("Veuillez entrer un nom de lieu à rechercher.");
     }
 });
 
@@ -443,7 +443,7 @@ function handleSearch() {
                 // Ajouter une popup au marqueur
                 marker.bindPopup(`ses Coordonnées : ${latitude}, ${longitude}`).openPopup();
             } catch (error) {
-                alert("Mauvaise copie ! " + error.message);
+                afficherMessage("Mauvaise copie ! " + error.message);
             }
         } else {
             //enlever les itinéraires
@@ -455,7 +455,7 @@ function handleSearch() {
         }
 }
 else {
-        alert("Veuillez entrer un nom de lieu à rechercher.");
+        afficherMessage("Veuillez entrer un nom de lieu à rechercher.");
     }
 });
 }
@@ -488,15 +488,15 @@ function activerPartage() {
                 // Copier dans le presse-papier
                 navigator.clipboard.writeText(positionFormat)
                     .then(() => {
-                        // Afficher une alerte de succès
-                        alert("Position copiée avec succès!");
+                        // Afficher une afficherMessagee de succès
+                        afficherMessage("Position copiée avec succès!");
                     })
                     .catch(err => {
                         console.error("Erreur lors de la copie :", err);
-                        alert("Impossible de copier la position.");
+                        afficherMessage("Impossible de copier la position.");
                     });
             } else {
-                alert("Position non disponible.");
+                afficherMessage("Position non disponible.");
             }
         });
     });
